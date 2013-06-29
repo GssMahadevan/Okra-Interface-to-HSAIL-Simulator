@@ -97,24 +97,7 @@ public class OkraOpenCLtoHSAILCompiler {
     }
 
     private static void executeCmd(String... cmd) {
-        System.out.println("spawning" + Arrays.toString(cmd));
-        try {
-            ProcessBuilder pb = new ProcessBuilder(cmd);
-            Process p = pb.start();
-            if (true) {
-                InputStream in = p.getInputStream();
-                BufferedInputStream buf = new BufferedInputStream(in);
-                InputStreamReader inread = new InputStreamReader(buf);
-                BufferedReader bufferedreader = new BufferedReader(inread);
-                String line;
-                while ((line = bufferedreader.readLine()) != null) {
-                    System.err.println(line);
-                }
-            }
-            p.waitFor();
-        } catch (Exception e) {
-            System.err.println("could not execute <" + Arrays.toString(cmd) + ">");
-        }
+        ExecHelper.exec(cmd);
     }
 
 }
